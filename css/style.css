@@ -736,6 +736,13 @@ button {
     text-align: center;
 }
 
+.navbar-toggler-img {
+    width: 44px;
+    height: auto;
+    float: right;
+    padding: 0px;
+}
+
 .read_bt_1 a {
     width: 100%;
     float: left;
@@ -936,7 +943,6 @@ button {
     width: 100%;
     margin: 0 auto;
     text-align: center;
-    padding-top: 40px;
 }
 
 .call_text {
