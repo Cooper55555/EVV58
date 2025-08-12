@@ -204,3 +204,53 @@ localStorage.setItem('visitorCount', count);
 
 // Show count on the page
 document.getElementById('visitor-count').textContent = count;
+
+function toggleSong(audioId, progressId, btnId) {
+  const audio = document.getElementById(audioId);
+  const progress = document.getElementById(progressId);
+  const button = document.getElementById(btnId);
+
+  if (audio.paused) {
+    // Stop andere audio's en reset knoppen
+    document.querySelectorAll('audio').forEach((otherAudio, idx) => {
+      if (otherAudio.id !== audioId) {
+        otherAudio.pause();
+        otherAudio.currentTime = 0;
+        document.getElementById(`progress${idx + 1}`).value = 0;
+        const otherBtn = document.getElementById(`btn-${otherAudio.id}`);
+        otherBtn.innerHTML = `<i class="fas fa-play"></i> Speel af`;
+        otherBtn.className = "play-button";
+      }
+    });
+
+    // Start huidige audio
+    audio.play();
+    button.innerHTML = `<i class="fas fa-stop"></i> Stop`;
+    button.className = "stop-button";
+
+    // Update progress bar
+    audio.addEventListener('timeupdate', () => {
+      progress.value = (audio.currentTime / audio.duration) * 100 || 0;
+    });
+
+    // Zet knop terug naar play bij einde
+    audio.addEventListener('ended', () => {
+      button.innerHTML = `<i class="fas fa-play"></i> Speel af`;
+      button.className = "play-button";
+      progress.value = 0;
+    });
+
+  } else {
+    // Stop huidig nummer
+    audio.pause();
+    audio.currentTime = 0;
+    button.innerHTML = `<i class="fas fa-play"></i> Speel af`;
+    button.className = "play-button";
+    progress.value = 0;
+  }
+}
+
+function seekSong(audioId, value) {
+  const audio = document.getElementById(audioId);
+  audio.currentTime = (value / 100) * audio.duration;
+}
