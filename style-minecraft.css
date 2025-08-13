@@ -743,3 +743,166 @@ input[type="range"] {
     padding: 0.5rem;
   }
 }
+
+/* Achtergrond */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Modal-box */
+.modal-content {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  margin: 5% auto;
+  padding: 25px;
+  width: 65%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-20px);
+  animation: slideUp 0.35s ease forwards;
+}
+
+/* Slide-up animatie */
+@keyframes slideUp {
+  to { transform: translateY(0); }
+}
+
+/* Afbeelding stijl */
+.modal-content img {
+  max-width: 500px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease;
+}
+
+.modal-content img:hover {
+  transform: scale(1.05);
+}
+
+/* Lijststijl */
+.name-list {
+  font-size: 18px;
+  flex: 1;
+  max-height: 450px; /* vaste hoogte */
+  overflow-y: auto; /* scrollen als te lang */
+  padding-right: 5px; /* ruimte voor scrollbar */
+  margin-top: 40px;
+}
+
+/* Scrollbar stijl (Webkit browsers) */
+.name-list::-webkit-scrollbar {
+  width: 6px;
+}
+.name-list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+.name-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.name-list h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.name-list ol {
+  padding-left: 0;
+  list-style: none;
+  counter-reset: name-counter;
+}
+
+.name-list li {
+  counter-increment: name-counter;
+  margin-bottom: 6px;
+  padding: 5px 10px;
+  background: #ec8c8c;
+  border-radius: 6px;
+  transition: background 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+}
+
+.name-list li::before {
+  content: counter(name-counter);
+  display: inline-block;
+  min-width: 26px;
+  height: 26px;
+  background: #ff4b4b;
+  border-radius: 6px;
+  text-align: center;
+  line-height: 26px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Sluitknop */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #555;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: rotate(90deg);
+  color: #ff4b4b;
+}
+
+/* 📱 Mobiel */
+@media (max-width: 1220px) {
+  .modal-content {
+    flex-direction: column;
+    width: 90%;
+    padding: 20px;
+  }
+
+  .modal-content img {
+    max-width: 100%;
+    margin-top: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .name-list {
+    text-align: center;
+    max-height: 250px; /* iets kleiner op mobiel */
+  }
+
+  .name-list ol {
+    padding-left: 0;
+    list-style-position: inside;
+  }
+
+  .close-btn {
+    top: 10px;
+    right: 30px;
+    font-size: 22px;
+  }
+}
