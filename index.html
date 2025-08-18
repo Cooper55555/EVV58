@@ -37,6 +37,10 @@
       <i class="fas fa-solid fa-music"></i>
       <span>LIEDJES</span>
     </button>
+    <button class="nav-btn" data-section="fourth-section">
+  <i class="fas fa-solid fa-comment"></i>
+  <span>ERVARINGEN</span>
+</button>
   </div>
 </nav>
 
@@ -492,6 +496,47 @@
 
   </div>
 </div>
+
+<div id="fourth-section" class="section" style="display:none;">
+  <div class="search-box">
+    <h1 class="main-title">Ervaringen met EVV'58.</h1>
+  </div>
+
+<div class="ervaringen-container">
+
+  <div class="ervaring-card">
+    <div class="ervaring-header">
+      <img src="EVV/EllesVelthaak.png" alt="Profielfoto" class="ervaring-foto">
+      <h3 class="ervaring-naam">Elles Velthaak</h3>
+    </div>
+    <p class="ervaring-tekst">
+      Mijn ervaring met E.V.V.'58.
+
+Evv, de club van onze familie. De kleuren rood-wit zat in onze genen. Zo voelde het voor mij als jong kind en nu als volwassen vrouw nog steeds.
+Als jong meisje hoorde ik hoe mijn vader de club evv heeft samengesteld. Als je een echte voetbalclub wilde zijn moest je ook een bestuur hebben. In de buurt wist hij de buurman zover te krijgen om voorzitter van de club te worden zijn vader secretaris en andere buurtgenoten penningmeester of gewoon bestuurslid.
+Ik was altijd trots op dat verhaal. Want hoe mooi is het dat je kan zeggen; deze club heeft mijn vader opgericht.
+Ik kende mijn vader niet anders dan voorzitter van EVV, Gerard Timmermans als penningmeester en Joep Timmermans als secretaris. Daarnaast kende ik nog wat bestuursleden.
+Om die mensen te leren kennen was allemaal niet zo moeilijk voor mij. Want na het avondeten ging mijn vader regelmatig nog naar de voetbalvereniging. Zodra ik hem maar zag opstaan zei ik al; Mag mee?
+En daar gingen we dan weer; met z'n tweeën richting de voetbalclub.
+Mijn vader ging dan het een en ander regelen en Ik ging bij de trainingen kijken. In het weekend ging ik regelmatig mee om naar een wedstrijd te kijken.
+Vooral de belangrijke wedstrijden tegen RAC of tegen Gilze wilde ik niet missen.
+Daar kwamen altijd veel mensen op af.
+
+Toen de club groter en groter werd, moest je zelfs bij de entree gaan betalen om de wedstrijd te kunnen zien. Ik vond het als jong kind dan altijd stoer als ik als; dochter van de voorzitter, zo door mocht lopen. Ik leek wel een VIP.
+
+Er was altijd een unieke sfeer binnen de club. Er werden naast voetbal ook andere dingen georganiseerd. Voor de jeugd maar ook voor de volwassenen Joker- en Rik kaart avonden. Er was ook een bijzondere band met een voetbalclub uit Gerolstein in Duitsland. Wat zorgde voor leuke contacten en uitwisselingen.
+
+Op een bepaald moment, gaf ik bij mijn vader aan dat ik ook bij EVV wilde voetballen. En zo geschiedde. Ik werd lid en ging op zondagochtend bij het dames elftal voetballen.
+We waren geen sterren team, maar wat heb ik genoten van het team en het sportieve voetbalspel.
+
+E.V.V. stond echt bekend als fijn, gemoedelijk clubje. Zo jammer dat er op een bepaald moment gefuseerd moest gaan worden. Want de nu grote samengevoegde club V.V. Rijen kon toch niet tippen aan die unieke E.V.V. sfeer.
+
+Ik kijk dus met een warm en trots gevoel terug op die mooie E.V.V. tijd. 
+    </p>
+    <button class="toggle-btn" style="display:none;">...Meer</button>
+  </div>
+
+</div>
 </div>
 
 <div id="player1" class="modal">
@@ -550,6 +595,34 @@
       }
     });
   });
+
+document.querySelectorAll('.ervaring-card').forEach(card => {
+  const tekstEl = card.querySelector('.ervaring-tekst');
+  const button = card.querySelector('.toggle-btn');
+  const origineleTekst = tekstEl.textContent.trim();
+
+  // Stel limiet in (bijv. 150 tekens)
+  const maxLengte = 150;
+
+  if (origineleTekst.length > maxLengte) {
+    const ingekorteTekst = origineleTekst.slice(0, maxLengte) + "...";
+    tekstEl.textContent = ingekorteTekst;
+    button.style.display = "inline";
+
+    let ingeklapt = true;
+
+    button.addEventListener('click', () => {
+      if (ingeklapt) {
+        tekstEl.textContent = origineleTekst;
+        button.textContent = "...Minder";
+      } else {
+        tekstEl.textContent = ingekorteTekst;
+        button.textContent = "...Meer";
+      }
+      ingeklapt = !ingeklapt;
+    });
+  }
+});
   </script>
     <script src="script-minecraft.js"></script>
 </body>
